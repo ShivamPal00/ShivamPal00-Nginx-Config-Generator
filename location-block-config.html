@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nginx Location Config Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="app">
+        <header class="header">
+            <h1>Location Config Generator</h1>
+            <p>Generate nginx location blocks from CSV/TSV data</p>
+            <nav class="nav">
+                <button onclick="goHome()">← Back to Home</button>
+            </nav>
+        </header>
+
+        <section class="settings-section">
+            <div class="card">
+                <label for="rateRequired">Rate Limiting</label>
+                <select id="rateRequired">
+                    <option value="yes">Enable rate limiting</option>
+                    <option value="no">No rate limiting</option>
+                </select>
+            </div>
+        </section>
+
+        <section class="upload-section">
+            <div class="card">
+                <label for="fileUpload">Upload CSV / TSV / TXT File</label>
+                <div class="file">
+                    <input type="file" id="fileUpload" accept=".csv,.tsv,.txt">
+                </div>
+                <div id="manualInputs"></div>
+                <div class="btnRow">
+                    <button onclick="generateConfig()" class="primary">Generate Config</button>
+                    <button onclick="validateNginxLocations()" class="validate">Validate Config</button>
+                    <button onclick="clearAll()" class="danger">Clear All</button>
+                </div>
+            </div>
+        </section>
+
+        <div id="status"></div>
+
+        <section class="config-section">
+            <div class="card config-card">
+                <div class="config-header">
+                    <h3>Location Blocks</h3>
+                    <div class="action">
+                        <button onclick="copyText('mainConf')">Copy</button>
+                        <button onclick="downloadFile('mainConf','location.conf')">Download</button>
+                    </div>
+                </div>
+                <textarea id="mainConf" readonly></textarea>
+            </div>
+
+            <div class="card config-card">
+                <div class="config-header">
+                    <h3>Rate Limit Config</h3>
+                    <div class="action">
+                        <button onclick="copyText('rateConf')">Copy</button>
+                        <button onclick="downloadFile('rateConf','ratelimit.conf')">Download</button>
+                    </div>
+                </div>
+                <textarea id="rateConf" readonly></textarea>
+            </div>
+        </section>
+    </main>
+
+    <script src="common.js"></script>
+    <script src="location-script.js"></script>
+</body>
+</html>

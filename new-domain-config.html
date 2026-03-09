@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Domain Config Generator</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <main class="app">
+        <header class="header">
+            <h1>New Domain Config Generator</h1>
+            <p>Generate nginx server configurations from API definition files</p>
+            <nav class="nav">
+                <a href="index.html" class="nav-link">
+                    <button>← Back to Home</button>
+                </a>
+            </nav>
+        </header>
+
+        <section class="upload-section">
+            <div class="card">
+                <label for="fileUpload">Upload API Definition File</label>
+                <div class="file">
+                    <input type="file" id="fileUpload" accept=".csv,.tsv,.txt">
+                </div>
+            </div>
+        </section>
+
+        <section class="manual-inputs-section">
+            <div class="card">
+                <h3>Missing Required Fields</h3>
+                <div id="manualInputs"></div>
+            </div>
+        </section>
+
+        <section class="actions-section">
+            <div class="card">
+                <div class="btnRow">
+                    <button onclick="generateConfig()" class="primary">Generate Config</button>
+                    <button onclick="validateNginx()" class="validate">Validate Config</button>
+                    <button onclick="clearAll()" class="danger">Clear All</button>
+                </div>
+            </div>
+        </section>
+
+        <div id="status"></div>
+
+        <section class="config-section">
+            <div class="card config-card">
+                <div class="config-header">
+                    <h3>Main Server Config</h3>
+                    <div class="action">
+                        <button onclick="copyText('mainConf')">Copy</button>
+                        <button onclick="downloadFile('mainConf','main.conf')">Download</button>
+                    </div>
+                </div>
+                <textarea id="mainConf" readonly></textarea>
+            </div>
+
+            <div class="card config-card">
+                <div class="config-header">
+                    <h3>Rate Limit Config</h3>
+                    <div class="action">
+                        <button onclick="copyText('rateConf')">Copy</button>
+                        <button onclick="downloadFile('rateConf','rate_limit.conf')">Download</button>
+                    </div>
+                </div>
+                <textarea id="rateConf" readonly></textarea>
+            </div>
+        </section>
+    </main>
+
+    <script src="common.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
